@@ -15,7 +15,7 @@ func main() {
 
 	r.Use(corsMiddleware)
 
-	r.HandleFunc("/api/calculate", handlers.CalculatorHandler).Methods("POST")
+	r.HandleFunc("/api/calculate", handlers.CalculatorHandler).Methods("POST", "OPTIONS")
 	r.HandleFunc("/api/health", handlers.HealthCheck).Methods("GET")
 
 	port := os.Getenv("PORT")
