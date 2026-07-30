@@ -1,0 +1,22 @@
+.site-header {
+  position: relative;
+  min-height: 10%;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 5px;
+}
+.site-header-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(15,12,41,.75), rgba(15,12,41,.45));
+}
+.site-header-logo {
+  position: relative;
+  max-width: 420px;
+  width: 60%;
+  z-index: 1;
+}

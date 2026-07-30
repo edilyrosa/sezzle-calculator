@@ -1,0 +1,286 @@
+:root {
+  --accent: #7c5cff;
+  --accent-soft: #b8a4ff;
+  --glass: rgba(255, 255, 255, 0.06);
+  --glass-border: rgba(255, 255, 255, 0.12);
+  --text: #f4f4f8;
+  --muted: #9a94b3;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  min-height: 100vh;
+  position: relative;
+  background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+  overflow-x: hidden;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.07;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56'%3E%3Cdefs%3E%3Cpattern id='grid' width='56' height='56' patternUnits='userSpaceOnUse'%3E%3Crect x='1' y='1' width='25' height='25' fill='none' stroke='%23b8a4ff' stroke-width='0.8'/%3E%3Crect x='30' y='1' width='25' height='25' fill='none' stroke='%23b8a4ff' stroke-width='0.8'/%3E%3Crect x='1' y='30' width='25' height='25' fill='none' stroke='%23b8a4ff' stroke-width='0.8'/%3E%3Crect x='30' y='30' width='25' height='25' fill='none' stroke='%23b8a4ff' stroke-width='0.8'/%3E%3Ccircle cx='28' cy='28' r='1.8' fill='%237c5cff'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23grid)'/%3E%3C/svg%3E");
+  mask-image: radial-gradient(ellipse at center, black 0%, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse at center, black 0%, transparent 75%);
+}
+
+.calculator-container {
+  width: min(380px, 90vw);
+  margin: 60px auto;
+  padding: 20px;
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+}
+
+.calculator {
+  background: var(--glass);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  border-radius: 28px;
+  padding: 22px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+  width: 100%;
+}
+
+
+.calculator-container h1 {
+  text-align: center;
+  color: var(--text);
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  margin-bottom: 20px;
+}
+
+
+
+.calculator-display {
+  background: rgba(0, 0, 0, 0.35);
+  border-radius: 18px;
+  padding: 22px 20px 16px;
+  margin-bottom: 20px;
+  min-height: 90px;
+  text-align: right;
+  overflow: hidden;
+}
+.expression {
+  color: var(--text);
+  font-size: 28px;
+  font-weight: 500;
+  min-height: 36px;
+  word-break: break-all;
+  letter-spacing: 0.5px;
+}
+
+.result {
+  min-height: 22px;
+  font-weight: 600;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+.result.visible {
+  opacity: 1;
+}
+.result-preview {
+  font-size: 16px;
+  color: var(--muted);
+}
+.result-final {
+  font-size: 30px;
+  color: var(--accent-soft);
+}
+
+.error-message {
+  background: #e74c3c;
+  color: #fff;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 12px;
+  text-align: center;
+  font-size: 13px;
+}
+
+.calculator-keypad {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+.keypad-row {
+  display: contents;
+}
+
+.key-btn {
+  aspect-ratio: 1 / 1;
+  padding: 0;
+  font-size: 20px;
+  font-weight: 500;
+  border: none;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text);
+  cursor: pointer;
+  transition: transform 0.12s ease, background 0.2s ease;
+}
+.key-btn:hover {
+  background: rgba(255, 255, 255, 0.14);
+}
+.key-btn:active {
+  transform: scale(0.94);
+}
+
+.key-btn.operator {
+  background: var(--accent);
+  color: #fff;
+}
+.key-btn.operator:hover {
+  background: #6a4ae0;
+}
+
+.key-btn.unary {
+  background: rgba(184, 164, 255, 0.18);
+  color: var(--accent-soft);
+}
+.key-btn.unary:hover {
+  background: rgba(184, 164, 255, 0.3);
+}
+
+.key-btn.clear {
+  background: rgba(231, 76, 60, 0.85);
+  color: #fff;
+  font-weight: 600;
+}
+.key-btn.clear:hover {
+  background: #e74c3c;
+}
+
+.connection-status {
+  text-align: center;
+  padding: 8px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  font-size: 13px;
+  background: rgba(255, 206, 84, 0.15);
+  color: #ffce54;
+}
+.footer {
+  margin-top: 15px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+@media (max-width: 420px) {
+  .calculator-container {
+    margin: 20px auto;
+    padding: 10px;
+  }
+  .key-btn {
+    font-size: 17px;
+  }
+  .expression {
+    font-size: 22px;
+  }
+}
+
+
+
+.calc-stage {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  padding: 40px 0;
+}
+
+.calc-cards {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.calc-card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 152px;               /* 40% del ancho de .calculator-container (380px) */
+  border-radius: 14px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.6) rotate(0deg);
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.4s ease;
+}
+
+/* Posiciones en abanico al hacer hover sobre el stage */
+/* primer número (horizontal) mueve izq/der, segundo (vertical) mueve arriba/abajo.*/
+
+.calc-stage:has(.calculator:hover) .card-1 {
+  opacity: 1;
+  transform: translate(calc(-50% - 270px), calc(-50% - 200px)) scale(1) rotate(-18deg);
+}
+.calc-stage:has(.calculator:hover) .card-2 {
+  opacity: 1;
+  transform: translate(calc(-50% - 270px), calc(-50% + 50px)) scale(1) rotate(-8deg);
+}
+.calc-stage:has(.calculator:hover) .card-3 {
+  opacity: 1;
+  transform: translate(100%, calc(-50% + 270px)) scale(1) rotate(-8deg);
+}
+.calc-stage:has(.calculator:hover) .card-4 {
+  opacity: 1;
+  transform: translate(calc(-50% + 270px), calc(-50% + 50px)) scale(1) rotate(12deg);
+}
+.calc-stage:has(.calculator:hover) .card-5 {
+  opacity: 1;
+  transform: translate(calc(-50% + 270px), calc(-50% - 200px)) scale(1) rotate(20deg);
+}
+.calc-stage:has(.calculator:hover) .card-6 {
+  opacity: 1;
+  transform: translate(calc(-50% - 270px), calc(-50% + 280px)) scale(1) rotate(18deg);
+}
+
+.calculator-container {
+  position: relative;
+  z-index: 1;
+  margin: 0 auto;
+}
+/* primer número (horizontal) mueve izq/der, segundo (vertical) mueve arriba/abajo. 
+Si en móvil se salen del viewport, reduce esos valores o agrega overflow-x: hidden 
+al body (probablemente ya lo tienes). */
+@media (max-width: 420px) {
+  .calc-card { width: 100px; }
+  .calc-stage:has(.calculator:hover) .card-1 { transform: translate(calc(-50% - 160px), calc(-50% - 120px)) scale(1) rotate(-18deg); }
+  .calc-stage:has(.calculator:hover) .card-2 { transform: translate(calc(-50% - 160px), calc(-50% + 30px)) scale(1) rotate(-8deg); }
+  .calc-stage:has(.calculator:hover) .card-3 { transform: translate(100%, calc(-50% + 160px)) scale(1) rotate(-8deg); }
+  .calc-stage:has(.calculator:hover) .card-4 { transform: translate(calc(-50% + 160px), calc(-50% + 30px)) scale(1) rotate(12deg); }
+  .calc-stage:has(.calculator:hover) .card-5 { transform: translate(calc(-50% + 160px), calc(-50% - 120px)) scale(1) rotate(20deg); }
+  .calc-stage:has(.calculator:hover) .card-6 { transform: translate(calc(-50% - 160px), calc(-50% + 165px)) scale(1) rotate(18deg); }
+}
+
+.calculator {
+  transition: background 0.3s ease;
+}
+
+/* .calc-stage:hover .calculator {
+  background: rgba(255, 255, 255, 0.12); 
+} */
+
+.calculator:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.expression {
+  color: var(--text);
+  font-weight: 500;
+  min-height: 36px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: clip;
+  letter-spacing: 0.5px;
+  transition: font-size 0.15s ease;
+}
