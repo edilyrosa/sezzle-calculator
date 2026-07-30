@@ -1,4 +1,3 @@
-import React from 'react';
 import { render, screen } from '@testing-library/react';
 import Display from './Display';
 
@@ -28,8 +27,6 @@ describe('Display', () => {
     );
     const resultElement = screen.getByTestId('result');
     expect(resultElement).toBeInTheDocument();
-    // Verifica que el contenido sea un espacio (no rompible o normal)
-    // Ya que el navegador puede normalizar \u00A0 a espacio, usamos textContent
     expect(resultElement.textContent).toBe('\u00A0');
   });
 });

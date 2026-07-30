@@ -117,18 +117,15 @@ const handleOperation = (symbol: string) => {
   if (!op) return;
   if (error) setError(null);
 
-  // Caso especial: '-' como signo negativo al iniciar un operando
-  // (primer número de la calculadora, o justo después de otro operador)
   if (op === 'subtract' && operand === '' && (pendingOp || accumulator === null)) {
     setOperand('-');
     setExpression((prev) => prev + '-');
     return;
   }
 
-  // Ignorar operador si no hay nada ingresado aún
+
   if (operand === '' && accumulator === null) return;
 
-  // Cambiar operador sin haber tecleado operando nuevo
   if (pendingOp && operand === '' && accumulator !== null) {
     setPendingOp(op);
     setExpression((prev) => prev.slice(0, -1) + opSymbol[op]);

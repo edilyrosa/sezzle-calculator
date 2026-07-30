@@ -9,8 +9,6 @@
   overflow: hidden;
   padding: 5px;
   border-radius: 16px;
-
-  /* Esto corta y difumina suavemente el borde inferior de TODO el header */
   -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 70%, rgba(0, 0, 0, 0) 100%);
   mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 70%, rgba(0, 0, 0, 0) 100%);
 }

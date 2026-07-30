@@ -208,7 +208,7 @@ body::before {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 152px;               /* 40% del ancho de .calculator-container (380px) */
+  width: 152px;              
   border-radius: 14px;
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
   opacity: 0;
@@ -216,8 +216,6 @@ body::before {
   transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.4s ease;
 }
 
-/* Posiciones en abanico al hacer hover sobre el stage */
-/* primer número (horizontal) mueve izq/der, segundo (vertical) mueve arriba/abajo.*/
 
 .calc-stage:has(.calculator:hover) .card-1 {
   opacity: 1;
@@ -249,9 +247,7 @@ body::before {
   z-index: 1;
   margin: 0 auto;
 }
-/* primer número (horizontal) mueve izq/der, segundo (vertical) mueve arriba/abajo. 
-Si en móvil se salen del viewport, reduce esos valores o agrega overflow-x: hidden 
-al body (probablemente ya lo tienes). */
+
 @media (max-width: 420px) {
   .calc-card { width: 100px; }
   .calc-stage:has(.calculator:hover) .card-1 { transform: translate(calc(-50% - 160px), calc(-50% - 120px)) scale(1) rotate(-18deg); }
@@ -265,10 +261,6 @@ al body (probablemente ya lo tienes). */
 .calculator {
   transition: background 0.3s ease;
 }
-
-/* .calc-stage:hover .calculator {
-  background: rgba(255, 255, 255, 0.12); 
-} */
 
 .calculator:hover {
   background: rgba(255, 255, 255, 0.12);
