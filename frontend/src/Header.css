@@ -1,6 +1,6 @@
 .site-header {
   position: relative;
-  min-height: 10%;
+  min-height: 15%;
   background-size: cover;
   background-position: center;
   display: flex;
@@ -8,12 +8,23 @@
   justify-content: center;
   overflow: hidden;
   padding: 5px;
+  border-radius: 16px;
+
+  /* Esto corta y difumina suavemente el borde inferior de TODO el header */
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 70%, rgba(0, 0, 0, 0) 100%);
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 70%, rgba(0, 0, 0, 0) 100%);
 }
+
 .site-header-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(15,12,41,.75), rgba(15,12,41,.45));
+  background: radial-gradient(
+    ellipse at center,
+    rgba(15, 12, 41, 0.2) 50%,
+    rgba(15, 12, 41, 0.85) 100%
+  );
 }
+
 .site-header-logo {
   position: relative;
   max-width: 420px;
