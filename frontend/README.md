@@ -1,4 +1,3 @@
-
 # Sezzle Calculator – Full‑Stack Application
 
 A complete calculator application built with **React (TypeScript)** on the frontend and **Go** on the backend.
@@ -16,7 +15,6 @@ The frontend communicates with a REST API, validates inputs, and shows live prev
 - [API Usage &amp; Examples](#api-usage--examples)
 - [Design Decisions &amp; Assumptions](#design-decisions--assumptions)
 - [Testing](#testing)
-- [Docker (Optional)](#docker-optional)
 - [AI Prompts Used](#ai-prompts-used)
 - [Project Structure](#project-structure)
 
@@ -160,27 +158,20 @@ npm test -- --coverage   # Generate coverage report
 Coverage report is saved in frontend/coverage/lcov-report/index.html.
 All components and API client are covered (Display, Keypad, Calculator, and API client).
 
-🐳 Docker (Optional)
-You can run the entire stack with a single command using Docker Compose.
-
 Build and run
 bash
-docker-compose up --build
 Frontend: http://localhost:3000
 
 Backend: http://localhost:8080
 
 Stop
 bash
-docker-compose down
 🤖 AI Prompts Used
-"Create a full-stack calculator with React frontend and Go backend, including error handling and Docker support"
+"Create a full-stack calculator with React frontend and Go backend, including error handling."
 
 "Write unit tests for Go calculator operations covering edge cases like division by zero"
 
 "Design a clean React UI with responsive mobile support for a calculator"
-
-"Create Docker Compose configuration for React and Go application"
 
 "Implement CORS middleware in Go to allow frontend communication"
 
@@ -204,7 +195,7 @@ sezzle-calculator/
 │   ├── main_test.go               # Integration tests
 │   ├── go.mod
 │   ├── go.sum
-│   └── Dockerfile
+│   
 ├── frontend/
 │   ├── public/
 │   ├── src/
@@ -224,8 +215,7 @@ sezzle-calculator/
 │   │   └── ...
 │   ├── package.json
 │   ├── tsconfig.json
-│   └── Dockerfile
-├── docker-compose.yml
+│   
 └── README.md                      # This file
 📜 License
 MIT – free to use for educational and evaluation purposes.
